@@ -5,15 +5,17 @@ import { connect } from 'react-redux';
 import Characters from '../CharacterComponent/Characters';
 import SortingContainer from '../SortingComponent/SortingContainer';
 
+// Searching of the films based on name
 class SearchContainer extends Component{
   
+    //initial state
     state = {
         isLoading: false,
         value: "",
         resultSelected: {}
     }
 
-
+    // after the result is selected fetch the list of characters
     handleResultSelect = (e, { result }) => {
         this.setState({
             value: result.title,
@@ -23,6 +25,7 @@ class SearchContainer extends Component{
         this.props.fetchcharacters(result.id);
     };
     
+    // searching based on the text given in search box and updating the state
     search = (value) => {
         this.setState({
             isLoading: true,
@@ -35,6 +38,7 @@ class SearchContainer extends Component{
         })  
     }
 
+    // handling change in the search bar
     handleSearchChange = (e) => {
        this.search(e.target.value)
     };
@@ -68,6 +72,7 @@ class SearchContainer extends Component{
     }
 }
 
+// gives the data from the resucer
 const mapStateToProps = (state) => {
     return{
         filmslist: state.filmslist,
@@ -75,5 +80,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-
+// connect function maps stor with the container
 export default connect(mapStateToProps,{fetchfilms, fetchcharacters})(SearchContainer)

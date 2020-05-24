@@ -3,12 +3,14 @@ import { Card, Grid, Container, Image} from 'semantic-ui-react';
 import './Characters.css';
 import Paginator from 'react-hooks-paginator';
 
+// displays all the characters with pagination
 export default function Characters(props){
     const pageLimit = 9;
     const [offset, setOffset] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [currentData, setCurrentData] = useState([]);
 
+    //set current data based on the page limit
     useEffect(() => {
         if(!props.characters) return 
             setCurrentData(props.characters.slice(offset, offset + pageLimit));

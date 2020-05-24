@@ -21,6 +21,7 @@ class SortingContainer extends React.Component{
         this.props.fetchcharacterssorted(this.props.film.id, this.state.selectedOption.value)
    }
 
+   // update the state based on selected option
     handleChange = (selectedOption) => {
         this.setState({ selectedOption });
     };

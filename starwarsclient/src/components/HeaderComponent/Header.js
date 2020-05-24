@@ -2,6 +2,7 @@ import React from 'react';
 import { Menu, MenuItem } from 'semantic-ui-react';
 import './Header.css'
 
+// displays Header
 export default function Header(){
     return(
         <React.Fragment>
