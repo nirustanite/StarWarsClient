@@ -3,10 +3,6 @@
    border: 2px solid black !important;
 }
 
-.page-item{
-    box-shadow: 0 16px 16px grey !important;
-}
-
 .react-hooks-paginator .page-item.active .page-link{
     background-color: black !important;
     border-color: black !important;

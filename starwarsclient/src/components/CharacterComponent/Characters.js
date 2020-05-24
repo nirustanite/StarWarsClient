@@ -1,5 +1,5 @@
 import React,{ useEffect, useState } from 'react';
-import { Card, Grid, Container} from 'semantic-ui-react';
+import { Card, Grid, Container, Image} from 'semantic-ui-react';
 import './Characters.css';
 import Paginator from 'react-hooks-paginator';
 
@@ -17,16 +17,18 @@ export default function Characters(props){
 
     return(
         <React.Fragment>
-            <br />
-            <Container padded>
+          <br />
+          <Container>
            <Grid columns={3}>
                 {currentData.map((character,i) => {
                     return  <Grid.Column key={i} width={5}>
                             <Card className="countrycard">
                                 <Card.Content>
-                                    <Card.Header>Name: {character.name}</Card.Header>
-                                    <Card.Description>Height: {character.height}</Card.Description>
-                                    <Card.Description>Gender: {character.gender}</Card.Description>
+                                <Image floated='right' size='mini'
+                                src={require('../../assets/profileicon.png')} />
+                                    <Card.Header> Name: {character.name}</Card.Header>
+                                    <Card.Description> <b>Height</b>: {character.height}</Card.Description>
+                                    <Card.Description> <b>Gender</b>: {character.gender}</Card.Description>
                                 </Card.Content>
                             </Card>
                 </Grid.Column>
@@ -34,7 +36,7 @@ export default function Characters(props){
            </Grid> 
           <br />
           <br />
-           <div>
+          <div>
            {props.characters && <Paginator
            totalRecords={props.characters.length}
            pageLimit={pageLimit}

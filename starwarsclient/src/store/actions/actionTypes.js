@@ -3,3 +3,4 @@ export const FILM_LIST = 'FILM_LIST';
 
 export const FETCH_CHARACTERS = 'FETCH_CHARACTERS';
 export const CHARCTER_LIST = 'CHARACTER_LIST';
+

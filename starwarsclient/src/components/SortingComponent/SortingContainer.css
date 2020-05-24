@@ -1,0 +1,10 @@
+.selectcontainer{
+   display: flex;
+   justify-content: space-between;
+   width: 350px;
+}
+
+.select{
+    width: 250px;
+}
+
