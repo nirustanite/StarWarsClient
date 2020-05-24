@@ -1,4 +1,4 @@
-export { fetchfilms, filmlist } from './filmactions';
+export { fetchfilms } from './filmactions';
 
-export { fetchcharacters, characterlist } from './characteractions';
+export { fetchcharacters, fetchcharacterssorted } from './characteractions';
 
