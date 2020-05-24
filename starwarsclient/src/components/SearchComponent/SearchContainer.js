@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Search, Grid } from 'semantic-ui-react';
+import { Search, Grid, Container } from 'semantic-ui-react';
 import { fetchfilms, fetchcharacters } from '../../store/actions';
 import { connect } from 'react-redux';
+import Characters from '../CharacterComponent/Characters';
 
 
 class SearchContainer extends Component{
@@ -42,18 +43,22 @@ class SearchContainer extends Component{
 
         return(
             <React.Fragment>
-              <Grid>
-                    <Grid.Column width={2}>
+            <br />
+            <Container padded>
+            <Grid>
+                <Grid.Column width={2}>
                     <Search
-                        fluid
                         loading={isLoading}
                         onResultSelect={this.handleResultSelect}
                         onSearchChange={this.handleSearchChange}
                         results={this.props.filmslist}
                         value={value}
                     />
-                    </Grid.Column>
-                </Grid>
+                </Grid.Column>
+            </Grid>
+            </Container>
+            <br />
+            {this.props.characterslist && <Characters characters={this.props.characterslist} />}
             </React.Fragment>
         )
     }
