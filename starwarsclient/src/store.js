@@ -3,6 +3,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import reducer from './store/reducers';
 import createSagaMiddleware from 'redux-saga';
 import { watchgetfilmslist } from './store/saga';
+import { watchgetcharacterslist } from './store/saga';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -16,5 +17,6 @@ const enhancer = composeEnhancers(
 const store = createStore(reducer, enhancer)
 
 sagaMiddleware.run(watchgetfilmslist);
+sagaMiddleware.run(watchgetcharacterslist);
 
 export default store;

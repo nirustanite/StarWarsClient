@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Search, Grid } from 'semantic-ui-react';
-import { fetchfilms } from '../../store/actions';
+import { fetchfilms, fetchcharacters } from '../../store/actions';
 import { connect } from 'react-redux';
-import _ from "lodash";
+
 
 class SearchContainer extends Component{
   
@@ -16,7 +16,8 @@ class SearchContainer extends Component{
         this.setState({
             value: result.title
         })
-        
+      
+        this.props.fetchcharacters(result.id)
     };
     
     search = (value) => {
@@ -25,14 +26,10 @@ class SearchContainer extends Component{
             value
         })
 
-        setTimeout(() => {
-            this.props.fetchfilms(value);
-            this.setState({
-                isLoading: false
-            })
-          }, 300);
-
-        
+        this.props.fetchfilms(value);
+        this.setState({
+            isLoading: false
+        })  
     }
 
     handleSearchChange = (e) => {
@@ -46,21 +43,17 @@ class SearchContainer extends Component{
         return(
             <React.Fragment>
               <Grid>
-                    <Grid.Column width={6}>
+                    <Grid.Column width={2}>
                     <Search
                         fluid
                         loading={isLoading}
                         onResultSelect={this.handleResultSelect}
-                        onSearchChange={_.debounce(this.handleSearchChange, 500, {
-                            leading: true
-                          })}
+                        onSearchChange={this.handleSearchChange}
                         results={this.props.filmslist}
                         value={value}
                     />
                     </Grid.Column>
                 </Grid>
-               
-               
             </React.Fragment>
         )
     }
@@ -68,9 +61,10 @@ class SearchContainer extends Component{
 
 const mapStateToProps = (state) => {
     return{
-        filmslist: state.filmslist
+        filmslist: state.filmslist,
+        characterslist: state.characterslist
     }
 }
 
 
-export default connect(mapStateToProps,{fetchfilms})(SearchContainer)
+export default connect(mapStateToProps,{fetchfilms, fetchcharacters})(SearchContainer)
