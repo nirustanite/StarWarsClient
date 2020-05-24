@@ -1,6 +1,4 @@
-export const FETCH_FILMS = 'FETCH_FILMS';
+// action types for films and characters
 export const FILM_LIST = 'FILM_LIST';
-
-export const FETCH_CHARACTERS = 'FETCH_CHARACTERS';
 export const CHARCTER_LIST = 'CHARACTER_LIST';
 

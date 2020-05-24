@@ -1,5 +1,6 @@
 import React from 'react';
 
+// An errorpage if non of the routing matches
 export default function Component404(){
 
     return(

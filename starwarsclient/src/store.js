@@ -1,4 +1,3 @@
-import 'regenerator-runtime/runtime';
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducer from './store/reducers';
 import api from './store/middleware/api';
