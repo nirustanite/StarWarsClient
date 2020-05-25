@@ -4,6 +4,7 @@ import { fetchfilms, fetchcharacters } from '../../store/actions';
 import { connect } from 'react-redux';
 import Characters from '../CharacterComponent/Characters';
 import SortingContainer from '../SortingComponent/SortingContainer';
+import _ from 'lodash';
 
 // Searching of the films based on name
 class SearchContainer extends Component{
@@ -12,6 +13,7 @@ class SearchContainer extends Component{
     state = {
         isLoading: false,
         value: "",
+        results: [],
         resultSelected: {}
     }
 
@@ -32,15 +34,19 @@ class SearchContainer extends Component{
             value
         })
          
-        this.props.fetchfilms(value);
-        this.setState({
-            isLoading: false
-        })  
+        setTimeout(() => {
+            this.props.fetchfilms(value);
+            this.setState({
+                isLoading: false,
+            })  
+          }, 300)
+        
+       
     }
 
     // handling change in the search bar
     handleSearchChange = (e) => {
-       this.search(e.target.value)
+            this.search(e.target.value)
     };
 
 
@@ -52,15 +58,17 @@ class SearchContainer extends Component{
             <br />
             <Container >
                 <Grid>
-                    <Grid.Column width={2}>
+                  {!this.state.loading && <Grid.Column width={2}>
                         <Search
                             loading={isLoading}
                             onResultSelect={this.handleResultSelect}
-                            onSearchChange={this.handleSearchChange}
+                            onSearchChange={_.debounce(this.handleSearchChange, 500, {
+                                leading: true,
+                              })}
                             results={this.props.filmslist}
                             value={value}
                         />
-                    </Grid.Column>
+                    </Grid.Column>}
                 </Grid>
                 <br />
                 <SortingContainer film={this.state.resultSelected}/>
